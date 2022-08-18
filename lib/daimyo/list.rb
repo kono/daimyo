@@ -40,8 +40,8 @@ module Daimyo
                                                 'ID',
                                                 'Name',
                                                 # 'Created',
-                                                'Updated',
-                                                'downloaded'],
+                                                'Updated on Web',
+                                                'Downloaded to Local'],
                                   :rows => wikis)
       puts table
     end
