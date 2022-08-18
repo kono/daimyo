@@ -13,6 +13,9 @@ RSpec.configure do |config|
   # Disable RSpec exposing methods globally on `Module` and `main`
   config.disable_monkey_patching!
 
+#   config.raise_errors_for_deprecations! # 非推奨警告をエラーに変換
+  ENV['THOR_SILENCE_DEPRECATION']='on' # THORの警告を止めとく
+
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end

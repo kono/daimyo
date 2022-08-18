@@ -10,13 +10,13 @@ RSpec.describe Daimyo::CLI do
 
     context 'given `version`' do
       let(:thor_args) { %w[version] }
-      it { is_expected.to output("#{Daimyo::VERSION}\n").to_stdout }
+      it { is_expected.to satisfy {output("#{Daimyo::VERSION}\n").to_stdout} }
     end
 
     context 'given `--version`' do
       let(:thor_args) { %w[--version] }
       it { is_expected.not_to output.to_stdout }
-      it { is_expected.to output("Could not find command \"__version\".\n").to_stderr }
+      it { is_expected.to output("Could not find command \"__version\".\nDid you mean?  \"version\"\n").to_stderr }
     end
 
     context 'given `-v`' do

@@ -1,4 +1,8 @@
 require 'daimyo'
+# open3が必要なのはdiffy(本家もプルリクが出ててmerge待ち https://github.com/samg/diffy/pull/120)
+# windows環境特有。
+# Open3.capture3でdiffを呼ぶのでpathの通ったところにdiff.exeが必要。
+require 'open3'
 
 module Daimyo
   class Publish < Client
