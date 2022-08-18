@@ -1,4 +1,5 @@
 require 'daimyo'
+require 'time'
 
 module Daimyo
   class List
@@ -15,8 +16,8 @@ module Daimyo
         wiki = []
         wiki << w.id
         wiki << w.name
-        wiki << w.created
-        wiki <<  w.updated
+        wiki << Time.parse(w.created).getlocal
+        wiki << Time.parse(w.updated).getlocal
         wikis << wiki
       end
 
