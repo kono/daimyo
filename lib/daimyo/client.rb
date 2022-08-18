@@ -13,6 +13,10 @@ module Daimyo
       )
     end
 
+    def space_id
+      @client.space_id
+    end
+
     def list(project_id)
       @client.get_wikis(project_id)
     end
