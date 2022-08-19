@@ -88,7 +88,7 @@ RSpec.describe Daimyo::CLI do
     context 'given `export --project-id 1`' do
       before do
         expect(Daimyo::Export).to receive(:new).and_return(export_mock)
-        expect(export_mock).to receive(:run).with('1', nil)
+        expect(export_mock).to receive(:run).with('1', nil, nil)
       end
 
       let(:thor_args) { %w[export --project-id 1] }
@@ -99,7 +99,7 @@ RSpec.describe Daimyo::CLI do
     context 'given `export --project-id a`' do
       before do
         expect(Daimyo::Export).to receive(:new).and_return(export_mock)
-        expect(export_mock).to receive(:run).with('a', nil)
+        expect(export_mock).to receive(:run).with('a', nil, nil)
       end
 
       let(:thor_args) { %w[export --project-id a] }
@@ -110,7 +110,7 @@ RSpec.describe Daimyo::CLI do
     context 'given `export --project_id 1`' do
       before do
         expect(Daimyo::Export).to receive(:new).and_return(export_mock)
-        expect(export_mock).to receive(:run).with('1', nil)
+        expect(export_mock).to receive(:run).with('1', nil, nil)
       end
 
       let(:thor_args) { %w[export --project_id 1] }
@@ -121,7 +121,7 @@ RSpec.describe Daimyo::CLI do
     context 'given `export --project-id=1`' do
       before do
         expect(Daimyo::Export).to receive(:new).and_return(export_mock)
-        expect(export_mock).to receive(:run).with('1', nil)
+        expect(export_mock).to receive(:run).with('1', nil, nil)
       end
 
       let(:thor_args) { %w[export --project-id=1] }
@@ -132,7 +132,7 @@ RSpec.describe Daimyo::CLI do
     context 'given `export -p 1`' do
       before do
         expect(Daimyo::Export).to receive(:new).and_return(export_mock)
-        expect(export_mock).to receive(:run).with('1', nil)
+        expect(export_mock).to receive(:run).with('1', nil, nil)
       end
 
       let(:thor_args) { %w[export -p 1] }
@@ -143,7 +143,7 @@ RSpec.describe Daimyo::CLI do
     context 'given `export --project-id 1 --wiki-id 2`' do
       before do
         expect(Daimyo::Export).to receive(:new).and_return(export_mock)
-        expect(export_mock).to receive(:run).with('1', '2')
+        expect(export_mock).to receive(:run).with('1', '2', nil)
       end
 
       let(:thor_args) { %w[export --project-id 1 --wiki-id 2] }
@@ -154,7 +154,7 @@ RSpec.describe Daimyo::CLI do
     context 'given `export --project-id 1 --wiki_id 2`' do
       before do
         expect(Daimyo::Export).to receive(:new).and_return(export_mock)
-        expect(export_mock).to receive(:run).with('1', '2')
+        expect(export_mock).to receive(:run).with('1', '2', nil)
       end
 
       let(:thor_args) { %w[export --project-id 1 --wiki_id 2] }
@@ -165,7 +165,7 @@ RSpec.describe Daimyo::CLI do
     context 'given `export --project-id 1 --wiki-id=2`' do
       before do
         expect(Daimyo::Export).to receive(:new).and_return(export_mock)
-        expect(export_mock).to receive(:run).with('1', '2')
+        expect(export_mock).to receive(:run).with('1', '2', nil)
       end
 
       let(:thor_args) { %w[export --project-id 1 --wiki-id=2] }
@@ -176,7 +176,7 @@ RSpec.describe Daimyo::CLI do
     context 'given `export --project-id 1 -i 2`' do
       before do
         expect(Daimyo::Export).to receive(:new).and_return(export_mock)
-        expect(export_mock).to receive(:run).with('1', '2')
+        expect(export_mock).to receive(:run).with('1', '2', nil)
       end
 
       let(:thor_args) { %w[export --project-id 1 -i 2] }

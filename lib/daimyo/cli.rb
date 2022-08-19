@@ -18,10 +18,11 @@ module Daimyo
     desc 'export', 'Export wiki page in project.'
     option :project_id, type: :string, aliases: '-p', desc: 'Specify the project id or project key'
     option :wiki_id, type: :string, aliases: '-i', desc: 'Specify the wiki id'
+    option :force, type: :boolean, aliaces: '-f', desc: 'Force export'
     def export
       raise 'Backlog プロジェクトキーを指定してください.' if options[:project_id].nil?
       d = Daimyo::Export.new
-      d.run(options[:project_id], options[:wiki_id])
+      d.run(options[:project_id], options[:wiki_id], options[:force])
     end
 
     desc 'publish', 'Publish wiki page.'

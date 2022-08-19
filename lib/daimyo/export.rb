@@ -8,7 +8,7 @@ module Daimyo
       @wiki ||= Daimyo::Client.new
     end
 
-    def run(project_id, wiki_id = nil)
+    def run(project_id, wiki_id = nil, force)
       ids = select_wiki_ids(project_id)
       pb = ProgressBar.create(:format => "%a %b\u{15E7}%i %p%% %t",
                               :progress_mark => ' ',
@@ -19,7 +19,7 @@ module Daimyo
         wiki = @wiki.export(id).body
         name = wiki.name
         content = wiki.content
-        write_file(project_id, id, name, content)
+        write_file(project_id, id, name, content, force)
         pb.increment
         sleep 0.1
       end
@@ -32,14 +32,15 @@ module Daimyo
       @wiki.list(project_id).body.map { |w| w.id }
     end
 
-    def write_file(project_id, id, name, content)
+    def write_file(project_id, id, name, content, force)
       file_path = get_md_path(@wiki, project_id, id, name)
       original_file_path = get_original_path(@wiki, project_id, id, name)
       create_wiki_directory(File.dirname(file_path))
 
       original_file_mtime =  get_mtime(original_file_path)
-      if get_mtime(file_path).to_s > original_file_mtime.to_s
+      if (get_mtime(file_path).to_s > original_file_mtime.to_s) and !force
         puts "#{file_path}はダウンロード後更新されているのでExportしません。"
+        puts "--forceで実行すれば強制的にExportします。"
       else
         File.open(file_path, 'w') do |f|
           f.puts(content.gsub("\r\n", "\n"))
