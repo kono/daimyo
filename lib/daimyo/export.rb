@@ -2,6 +2,8 @@ require 'daimyo'
 
 module Daimyo
   class Export
+    include Daimyo::Helper
+
     def initialize
       @wiki ||= Daimyo::Client.new
     end
@@ -31,17 +33,21 @@ module Daimyo
     end
 
     def write_file(project_id, id, name, content)
-      path = define_directory_path(project_id, name)
-      create_wiki_directory(path)
-      filename = id.to_s + '_' + define_file_path(name) + '.md'
-      file_path = path + '/' + filename
-      File.open(file_path, 'w') do |f|
-        f.puts(content.gsub("\r\n", "\n"))
-      end
+      file_path = get_md_path(@wiki, project_id, id, name)
+      original_file_path = get_original_path(@wiki, project_id, id, name)
+      create_wiki_directory(File.dirname(file_path))
 
-      original_file_path = path + '/' + '.' + filename
-      File.open(original_file_path, 'w') do |f|
-        f.puts(content.gsub("\r\n", "\n"))
+      original_file_mtime =  get_mtime(original_file_path)
+      if get_mtime(file_path).to_s > original_file_mtime.to_s
+        puts "#{file_path}はダウンロード後更新されているのでExportしません。"
+      else
+        File.open(file_path, 'w') do |f|
+          f.puts(content.gsub("\r\n", "\n"))
+        end
+
+        File.open(original_file_path, 'w') do |f|
+          f.puts(content.gsub("\r\n", "\n"))
+        end
       end
     end
 

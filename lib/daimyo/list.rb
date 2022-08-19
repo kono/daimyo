@@ -9,19 +9,14 @@ module Daimyo
       @wiki ||= Daimyo::Client.new
     end
 
-    def get_original_mtime(project_id, wiki)
-      path = "./#{@wiki.space_id}/#{project_id}/\.#{wiki.id}_#{wiki.name}\.md"
-      File.exists?(path) ? File.mtime(path) : nil
-    end
-
     def run(project_id)
       wikis = []
       res = @wiki.list(project_id)
       res.body.each do |w|
         updated = Time.parse(w.updated).getlocal
-        original_mtime = get_original_mtime(project_id, w)
+        original_mtime = get_mtime(get_original_path(@wiki, project_id, w.id, w.name))
         mark =''
-        mark = '*' if updated.to_s > original_mtime.to_s
+        mark = '!!' if updated.to_s > original_mtime.to_s
         wiki = []
         wiki << mark
         wiki << w.id
