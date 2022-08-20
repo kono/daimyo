@@ -56,7 +56,7 @@ module Daimyo
       diff_files
     end
 
-    def run(project_id, dry_run)
+    def run(project_id, dry_run, force)
       files = search_files(project_id)
 
       diff_files = create_diff_files(files)
@@ -70,11 +70,9 @@ module Daimyo
         wiki_name = matchdata[:wiki_title]
 
         if @is_local
-          puts "### @is_local true"
           puts Diffy::Diff.new(diff_file[1], diff_file[2],
                                :include_diff_info => false, :context => 1).to_s(:color)
         else
-          puts "### @is_local FALSE"
           wiki_content = @wiki.export(wiki_id).body.content.gsub("\r\n", "\n")
           puts Diffy::Diff.new(wiki_content, diff_file[2],
                                :include_diff_info => false, :context => 1).to_s(:color)

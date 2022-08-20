@@ -199,7 +199,7 @@ RSpec.describe Daimyo::CLI do
 
       before do
         expect(Daimyo::Publish).to receive(:new).with(options).and_return(publish_mock)
-        expect(publish_mock).to receive(:run).with('1', nil)
+        expect(publish_mock).to receive(:run).with('1', nil, nil)
       end
 
       let(:thor_args) { %w[publish --project-id 1] }
@@ -212,7 +212,7 @@ RSpec.describe Daimyo::CLI do
 
       before do
         expect(Daimyo::Publish).to receive(:new).with(options).and_return(publish_mock)
-        expect(publish_mock).to receive(:run).with('a', nil)
+        expect(publish_mock).to receive(:run).with('a', nil, nil)
       end
 
       let(:thor_args) { %w[publish --project-id a] }
@@ -225,7 +225,7 @@ RSpec.describe Daimyo::CLI do
 
       before do
         expect(Daimyo::Publish).to receive(:new).with(options).and_return(publish_mock)
-        expect(publish_mock).to receive(:run).with('1', nil)
+        expect(publish_mock).to receive(:run).with('1', nil, nil)
       end
 
       let(:thor_args) { %w[publish --project_id 1] }
@@ -238,7 +238,7 @@ RSpec.describe Daimyo::CLI do
 
       before do
         expect(Daimyo::Publish).to receive(:new).with(options).and_return(publish_mock)
-        expect(publish_mock).to receive(:run).with('1', nil)
+        expect(publish_mock).to receive(:run).with('1', nil, nil)
       end
 
       let(:thor_args) { %w[publish --project-id=1] }
@@ -251,7 +251,7 @@ RSpec.describe Daimyo::CLI do
 
       before do
         expect(Daimyo::Publish).to receive(:new).with(options).and_return(publish_mock)
-        expect(publish_mock).to receive(:run).with('1', nil)
+        expect(publish_mock).to receive(:run).with('1', nil, nil)
       end
 
       let(:thor_args) { %w[publish -p 1] }
@@ -264,7 +264,7 @@ RSpec.describe Daimyo::CLI do
 
       before do
         expect(Daimyo::Publish).to receive(:new).with(options).and_return(publish_mock)
-        expect(publish_mock).to receive(:run).with('1', true)
+        expect(publish_mock).to receive(:run).with('1', true, nil)
       end
 
       let(:thor_args) { %w[publish --project-id 1 --dry-run] }
@@ -277,7 +277,7 @@ RSpec.describe Daimyo::CLI do
 
       before do
         expect(Daimyo::Publish).to receive(:new).with(options).and_return(publish_mock)
-        expect(publish_mock).to receive(:run).with('1', true)
+        expect(publish_mock).to receive(:run).with('1', true, nil)
       end
 
       let(:thor_args) { %w[publish --project-id 1 --dry_run] }
@@ -290,7 +290,7 @@ RSpec.describe Daimyo::CLI do
 
       before do
         expect(Daimyo::Publish).to receive(:new).with(options).and_return(publish_mock)
-        expect(publish_mock).to receive(:run).with('1', true)
+        expect(publish_mock).to receive(:run).with('1', true, nil)
       end
 
       let(:thor_args) { %w[publish --project-id 1 --dry-run=true] }
@@ -303,7 +303,7 @@ RSpec.describe Daimyo::CLI do
 
       before do
         expect(Daimyo::Publish).to receive(:new).with(options).and_return(publish_mock)
-        expect(publish_mock).to receive(:run).with('1', false)
+        expect(publish_mock).to receive(:run).with('1', false, nil)
       end
 
       let(:thor_args) { %w[publish --project-id 1 --dry-run false] }
@@ -316,7 +316,7 @@ RSpec.describe Daimyo::CLI do
 
       before do
         expect(Daimyo::Publish).to receive(:new).with(options).and_return(publish_mock)
-        expect(publish_mock).to receive(:run).with('1', true)
+        expect(publish_mock).to receive(:run).with('1', true, nil)
       end
 
       let(:thor_args) { %w[publish --project-id 1 -d] }
@@ -329,7 +329,7 @@ RSpec.describe Daimyo::CLI do
 
       before do
         expect(Daimyo::Publish).to receive(:new).with(options).and_return(publish_mock)
-        expect(publish_mock).to receive(:run).with('1', true)
+        expect(publish_mock).to receive(:run).with('1', true, nil)
       end
 
       let(:thor_args) { %w[publish --project-id 1 --dry-run --local] }
@@ -342,7 +342,7 @@ RSpec.describe Daimyo::CLI do
 
       before do
         expect(Daimyo::Publish).to receive(:new).with(options).and_return(publish_mock)
-        expect(publish_mock).to receive(:run).with('1', true)
+        expect(publish_mock).to receive(:run).with('1', true, nil)
       end
 
       let(:thor_args) { %w[publish --project-id 1 --dry-run --local=true] }
@@ -355,7 +355,7 @@ RSpec.describe Daimyo::CLI do
 
       before do
         expect(Daimyo::Publish).to receive(:new).with(options).and_return(publish_mock)
-        expect(publish_mock).to receive(:run).with('1', true)
+        expect(publish_mock).to receive(:run).with('1', true, nil)
       end
 
       let(:thor_args) { %w[publish --project-id 1 --dry-run --local false] }
@@ -368,7 +368,7 @@ RSpec.describe Daimyo::CLI do
 
       before do
         expect(Daimyo::Publish).to receive(:new).with(options).and_return(publish_mock)
-        expect(publish_mock).to receive(:run).with('1', true)
+        expect(publish_mock).to receive(:run).with('1', true, nil)
       end
 
       let(:thor_args) { %w[publish --project-id 1 --dry-run -l] }
